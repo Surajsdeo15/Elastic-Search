@@ -10,7 +10,7 @@ interface ProductData {
   location: string;
 }
 
-@Controller('products')
+@Controller('product')
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 

@@ -14,7 +14,7 @@ interface ProductData {
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
-  @Post('create/index')
+  @Post('create/indexs')
   async createSchema() {
     return await this.productService.createProductIndexIfNotExists();
   }

@@ -1,0 +1,100 @@
+
+
+# services:
+#   es01:
+#     image: docker.elastic.co/elasticsearch/elasticsearch:9.1.0
+#     container_name: es01
+#     environment:
+#       - node.name=es01
+#       - cluster.name=Elastic_Cluster
+#       - cluster.initial_master_nodes=es01
+#       - discovery.seed_hosts=es02,es03
+#       - bootstrap.memory_lock=true
+#       - xpack.security.enabled=false
+#     ulimits:
+#       memlock:
+#         soft: -1
+#         hard: -1
+#     volumes:
+#       - esdata1:/usr/share/elasticsearch/data
+#     ports:
+#       - 9200:9200
+#     networks:
+#       - elastic
+
+#   es02:
+#     image: docker.elastic.co/elasticsearch/elasticsearch:9.1.0
+#     container_name: es02
+#     environment:
+#       - node.name=es02
+#       - cluster.name=Elastic_Cluster
+#       - cluster.initial_master_nodes=es01
+#       - discovery.seed_hosts=es01,es03
+#       - bootstrap.memory_lock=true
+#       - xpack.security.enabled=false
+#     ulimits:
+#       memlock:
+#         soft: -1
+#         hard: -1
+#     volumes:
+#       - esdata2:/usr/share/elasticsearch/data
+#     networks:
+#       - elastic
+
+#   es03:
+#     image: docker.elastic.co/elasticsearch/elasticsearch:9.1.0
+#     container_name: es03
+#     environment:
+#       - node.name=es03
+#       - cluster.name=Elastic_Cluster
+#       - cluster.initial_master_nodes=es01
+#       - discovery.seed_hosts=es01,es02
+#       - bootstrap.memory_lock=true
+#       - xpack.security.enabled=false
+#     ulimits:
+#       memlock:
+#         soft: -1
+#         hard: -1
+#     volumes:
+#       - esdata3:/usr/share/elasticsearch/data
+#     networks:
+#       - elastic
+
+# volumes:
+#   esdata1:
+#   esdata2:
+#   esdata3:
+
+# networks:
+#   elastic:
+
+
+version: '3.8'
+
+services:
+  es01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:9.1.0
+    container_name: es01
+    environment:
+      - node.name=es01
+      - cluster.name=Elastic_Cluster
+      - discovery.type=single-node            # ✅ Use this
+      - bootstrap.memory_lock=true
+      - xpack.security.enabled=false          # ✅ Security disabled for dev
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata1:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    networks:
+      - elastic
+
+volumes:
+  esdata1:
+
+networks:
+  elastic:
+

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "webpack": true
+  },
+  "projects": {
+    "elastic": {
+      "type": "library",
+      "root": "libs/elastic",
+      "entryFile": "index",
+      "sourceRoot": "libs/elastic/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/elastic/tsconfig.lib.json"
+      }
+    },
+    "elastic-search": {
+      "type": "library",
+      "root": "libs/elastic-search",
+      "entryFile": "index",
+      "sourceRoot": "libs/elastic-search/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/elastic-search/tsconfig.lib.json"
+      }
+    },
+    "elasticstack": {
+      "type": "library",
+      "root": "libs/elasticstack",
+      "entryFile": "index",
+      "sourceRoot": "libs/elasticstack/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/elasticstack/tsconfig.lib.json"
+      }
+    }
+  }
+}
